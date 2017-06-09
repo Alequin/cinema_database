@@ -7,7 +7,8 @@ class Customer < Crud
   attr_accessor :name
 
   def initialize(options)
-    super(options)
+    table_name = "customers"
+    super(options, table_name)
     @name = options["name"]
     @money = options["money"]
   end
@@ -31,21 +32,15 @@ class Customer < Crud
   end
 
   def save()
-    sql_command = "INSERT INTO customers
-      (name, money) VALUES ($1, $2) RETURNING id"
-    @id = run_sql_with_name_and_money(sql_command)[0]["id"]
+    columns = ["name", "money"]
+    values = [@name, @money]
+    super(columns, values)
   end
 
   def update()
-    sql_command = "UPDATE customers SET
-      (name, money) = ($1, $2)
-      WHERE id = #{@id}"
-    run_sql_with_name_and_money(sql_command)
-  end
-
-  def delete()
-    sql_command = "DELETE FROM customers WHERE id = #{@id}"
-    SqlRunner.run(sql_command)
+    columns = ["name", "money"]
+    values = [@name, @money]
+    super(columns, values)
   end
 
   def increase_money_by(amount)
@@ -58,13 +53,6 @@ class Customer < Crud
 
   def enough_money?(cost_of_item)
     return @money >= cost_of_item
-  end
-
-  private
-
-  def run_sql_with_name_and_money(sql_command)
-    values = [@name, @money]
-    return SqlRunner.run(sql_command, values)
   end
 
 end

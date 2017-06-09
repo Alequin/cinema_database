@@ -29,5 +29,9 @@ customer_4 = Customer.find(customer_1.id)
 
 all_customers = Customer.get_all()
 
+# customer_1.delete()
+# customer_2.delete()
+# customer_3.delete()
+
 binding.pry
 nil
