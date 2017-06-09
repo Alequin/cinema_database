@@ -20,14 +20,17 @@ class Customer
     SqlRunner.run(sql_command)
   end
 
+  def Customer.find(id)
+    sql_command = "SELECT * FROM customers WHERE id = $1"
+    values = [id]
+    customers_details = SqlRunner.run(sql_command, values)[0]
+    return Customer.new(customers_details)
+  end
+
   def save()
     sql_command = "INSERT INTO customers
       (name, money) VALUES ($1, $2) RETURNING id"
     @id = run_sql_with_standard_values(sql_command)[0]["id"]
-  end
-
-  def find(id)
-
   end
 
   def update()

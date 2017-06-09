@@ -13,7 +13,7 @@ customer_1.save()
 customer_1.name = "Jane Doe"
 customer_1.update()
 
-customer_1.delete()
+customer_2 = Customer.find(customer_1.id)
 
 binding.pry
 nil
