@@ -14,6 +14,7 @@ class Crud
   def Crud.get_all(table_name)
     sql_command = "SELECT * FROM #{table_name}"
     results = SqlRunner.run(sql_command)
+    return results
   end
 
   def Crud.delete_all(table_name)
