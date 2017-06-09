@@ -39,6 +39,8 @@ film_1 = Film.new({
   "cost" => 5
 })
 film_1.save()
+film_1.cost = 10
+film_1.update()
 
 binding.pry
 nil

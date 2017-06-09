@@ -31,7 +31,9 @@ class Film < Crud
   end
 
   def update()
-
+    columns = ["title", "cost"]
+    values = [@title, @cost]
+    super(columns, values)
   end
 
 end
