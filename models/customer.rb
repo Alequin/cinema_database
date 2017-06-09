@@ -1,4 +1,3 @@
-require_relative("../db/sql_runner.rb")
 require_relative("crud.rb")
 
 class Customer < Crud
@@ -9,7 +8,7 @@ class Customer < Crud
   @@table_name = "customers"
 
   def initialize(options)
-    super(options, @@table_name)
+    super(options["id"], @@table_name)
     @name = options["name"]
     @money = options["money"]
   end

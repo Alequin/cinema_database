@@ -4,13 +4,6 @@ class Crud
 
   attr_reader :id
 
-  protected
-
-  def initialize(options, table_name)
-    @id = options["id"] if options["id"]
-    @table_name = table_name
-  end
-
   def Crud.get_all(table_name)
     sql_command = "SELECT * FROM #{table_name}"
     results = SqlRunner.run(sql_command)
@@ -27,6 +20,13 @@ class Crud
     values = [id]
     result = SqlRunner.run(sql_command, values)[0]
     return result
+  end
+
+  protected
+
+  def initialize(id, table_name)
+    @id = id if id
+    @table_name = table_name
   end
 
   def save(columns, values)
