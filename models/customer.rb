@@ -10,7 +10,7 @@ class Customer < Crud
   def initialize(options)
     super(options["id"], @@table_name)
     @name = options["name"]
-    @money = options["money"]
+    @money = options["money"].to_i
   end
 
   def Customer.get_all()
