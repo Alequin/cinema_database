@@ -1,4 +1,7 @@
+require_relative("../db/sql_runner.rb")
+
 class Customers
+  include SqlRunner
 
   attr_reader :id, :money
   attr_accessor :name
@@ -18,7 +21,10 @@ class Customers
   end
 
   def save()
-
+    sql_command = "INSERT INTO customers
+      (name, money) VALUES ($1, $2)"
+    values = [@name, @money]
+    SqlRunner.run(sql_command, values)
   end
 
   def find(id)
