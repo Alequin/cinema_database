@@ -38,7 +38,8 @@ class Customer
   end
 
   def delete()
-
+    sql_command = "DELETE FROM customers WHERE id = #{@id}"
+    SqlRunner.run(sql_command)
   end
 
   private

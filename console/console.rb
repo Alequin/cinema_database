@@ -13,5 +13,7 @@ customer_1.save()
 customer_1.name = "Jane Doe"
 customer_1.update()
 
+customer_1.delete()
+
 binding.pry
 nil
