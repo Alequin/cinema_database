@@ -1,6 +1,6 @@
 require_relative("../db/sql_runner.rb")
 
-class Customers
+class Customer
   include SqlRunner
 
   attr_reader :id, :money
