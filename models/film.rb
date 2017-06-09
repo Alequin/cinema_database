@@ -1,14 +1,35 @@
-require_relative("../db/sql_runner.rb")
+require_relative("crud.rb")
 
-class Film
+class Film < Crud
 
   attr_reader :id, :title
   attr_accessor :cost
 
   def initialize(options)
-    @id = options["id"] if options["id"]
+    @@table_name = "films"
+    super(options["id"], @@table_name)
     @title = options["title"]
     @cost = options["cost"]
+  end
+
+  def Film.get_all()
+
+  end
+
+  def Film.delete_all()
+
+  end
+
+  def Film.find(id)
+
+  end
+
+  def save()
+
+  end
+
+  def update()
+
   end
 
 end
