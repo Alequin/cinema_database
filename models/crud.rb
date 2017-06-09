@@ -22,6 +22,11 @@ class Crud
     return result
   end
 
+  def delete()
+    sql_command = "DELETE FROM #{@table_name} WHERE id = #{@id}"
+    SqlRunner.run(sql_command)
+  end
+
   protected
 
   def initialize(id, table_name)
@@ -42,11 +47,6 @@ class Crud
       (#{columns_string}) = ($1, $2)
       WHERE id = #{@id}"
     SqlRunner.run(sql_command, values)
-  end
-
-  def delete()
-    sql_command = "DELETE FROM #{@table_name} WHERE id = #{@id}"
-    SqlRunner.run(sql_command)
   end
 
   private
