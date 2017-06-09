@@ -11,6 +11,16 @@ class Crud
     @table_name = table_name
   end
 
+  def Crud.get_all(table_name)
+    sql_command = "SELECT * FROM #{table_name}"
+    results = SqlRunner.run(sql_command)
+  end
+
+  def Crud.delete_all(table_name)
+    sql_command = "DELETE FROM #{table_name}"
+    SqlRunner.run(sql_command)
+  end
+
   def save(columns, values)
     columns_string = build_column_string(columns)
     sql_command = "INSERT INTO #{@table_name}
