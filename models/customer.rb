@@ -6,22 +6,21 @@ class Customer < Crud
   attr_reader :money
   attr_accessor :name
 
+  @@table_name = "customers"
+  
   def initialize(options)
-    table_name = "customers"
-    super(options, table_name)
+    super(options, @@table_name)
     @name = options["name"]
     @money = options["money"]
   end
 
   def Customer.get_all()
-    sql_command = "SELECT * FROM customers"
-    customers = SqlRunner.run(sql_command)
+    customers = Crud.get_all(@@table_name)
     return customers.map() {|customer| Customer.new(customer)}
   end
 
   def Customer.delete_all()
-    sql_command = "DELETE FROM customers"
-    SqlRunner.run(sql_command)
+    Crud.delete_all(@@table_name)
   end
 
   def Customer.find(id)
