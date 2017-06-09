@@ -7,7 +7,7 @@ class Customer < Crud
   attr_accessor :name
 
   @@table_name = "customers"
-  
+
   def initialize(options)
     super(options, @@table_name)
     @name = options["name"]
@@ -24,10 +24,8 @@ class Customer < Crud
   end
 
   def Customer.find(id)
-    sql_command = "SELECT * FROM customers WHERE id = $1"
-    values = [id]
-    customers_details = SqlRunner.run(sql_command, values)[0]
-    return Customer.new(customers_details)
+    customer = Crud.find(id, @@table_name)
+    return Customer.new(customer)
   end
 
   def save()

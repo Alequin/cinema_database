@@ -21,6 +21,13 @@ class Crud
     SqlRunner.run(sql_command)
   end
 
+  def Crud.find(id, table_name)
+    sql_command = "SELECT * FROM #{table_name} WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql_command, values)[0]
+    return result
+  end
+
   def save(columns, values)
     columns_string = build_column_string(columns)
     sql_command = "INSERT INTO #{@table_name}
