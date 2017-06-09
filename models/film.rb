@@ -13,15 +13,17 @@ class Film < Crud
   end
 
   def Film.get_all()
-
+    films = Crud.get_all(@@table_name)
+    return films.map(){|film| Film.new(film)}
   end
 
   def Film.delete_all()
-
+    Crud.delete_all(@@table_name)
   end
 
   def Film.find(id)
-
+    film = Crud.find(id, @@table_name)
+    return Film.new(film)
   end
 
   def save()
