@@ -5,8 +5,9 @@ class Film < Crud
   attr_reader :title
   attr_accessor :cost
 
+  @@table_name = "films"
+
   def initialize(options)
-    @@table_name = "films"
     super(options["id"], @@table_name)
     @title = options["title"]
     @cost = options["cost"].to_i

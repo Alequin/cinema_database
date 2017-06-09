@@ -1,6 +1,7 @@
 require("pry-byebug")
 require_relative("../models/customer.rb")
 require_relative("../models/film.rb")
+require_relative("../models/Screening.rb")
 
 Customer.delete_all()
 
@@ -39,8 +40,15 @@ film_1 = Film.new({
   "cost" => 5
 })
 film_1.save()
-film_1.cost = 10
-film_1.update()
+
+screening_1 = Screening.new({
+    "film_id" => film_1.id,
+    "show_time" => "12:00",
+    "total_tickets" => 10
+})
+screening_1.save()
+screening_1.show_time = "14:00"
+screening_1.update()
 
 binding.pry
 nil
