@@ -21,6 +21,8 @@ customer_2.save()
 customer_3.save()
 
 customer_1.name = "Jane Doe"
+customer_1.increase_money_by(1000)
+customer_1.decrease_money_by(600)
 customer_1.update()
 
 customer_4 = Customer.find(customer_1.id)

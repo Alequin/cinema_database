@@ -47,6 +47,18 @@ class Customer
     SqlRunner.run(sql_command)
   end
 
+  def increase_money_by(amount)
+    @money += amount
+  end
+
+  def decrease_money_by(amount)
+    @money -= amount
+  end
+
+  def enough_money?(cost_of_item)
+    return @money >= cost_of_item
+  end
+
   private
 
   def run_sql_with_name_and_money(sql_command)
