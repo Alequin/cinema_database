@@ -3,8 +3,6 @@ require("pry")
 
 module SqlRunner
 
-  protected
-
   def SqlRunner.run(sql_command, values)
     begin
       db = PG.connect({dbname: "cinema", host: "localhost"})
