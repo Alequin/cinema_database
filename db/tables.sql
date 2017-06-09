@@ -33,7 +33,7 @@ CREATE TABLE tickets(
 -- INSERT INTO customers (name, money)
 -- VALUES
 -- ('Tommy Atkins', 100),
--- ('Dakine', 110),
+-- ('Da kine', 110),
 -- ('Jane Doe', 120),
 -- ('Benjaman Kyle', 130),
 -- ('Rudolf Lingens', 140),

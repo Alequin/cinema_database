@@ -12,7 +12,9 @@ class Customer
   end
 
   def Customer.get_all()
-
+    sql_command = "SELECT * FROM customers"
+    customers = SqlRunner.run(sql_command)
+    return customers.map() {|customer| Customer.new(customer)}
   end
 
   def Customer.delete_all()
@@ -30,14 +32,14 @@ class Customer
   def save()
     sql_command = "INSERT INTO customers
       (name, money) VALUES ($1, $2) RETURNING id"
-    @id = run_sql_with_standard_values(sql_command)[0]["id"]
+    @id = run_sql_with_name_and_money(sql_command)[0]["id"]
   end
 
   def update()
     sql_command = "UPDATE customers SET
       (name, money) = ($1, $2)
       WHERE id = #{@id}"
-    run_sql_with_standard_values(sql_command)
+    run_sql_with_name_and_money(sql_command)
   end
 
   def delete()
@@ -47,7 +49,7 @@ class Customer
 
   private
 
-  def run_sql_with_standard_values(sql_command)
+  def run_sql_with_name_and_money(sql_command)
     values = [@name, @money]
     return SqlRunner.run(sql_command, values)
   end
