@@ -9,4 +9,30 @@ class Customers
     @money = options["money"]
   end
 
+  def Customer.get_all()
+
+  end
+
+  def Customer.delete_all()
+
+  end
+
+  def save()
+
+  end
+
+  def find(id)
+
+  end
+
+  def update()
+
+  end
+
+  def delete()
+
+  end
+
+
+
 end
