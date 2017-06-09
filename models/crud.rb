@@ -36,15 +36,17 @@ class Crud
 
   def save(columns, values)
     columns_string = build_column_string(columns)
+    argument_string = build_argument_string(values.length)
     sql_command = "INSERT INTO #{@table_name}
-      (#{columns_string}) VALUES ($1, $2) RETURNING id"
+      (#{columns_string}) VALUES (#{argument_string}) RETURNING id"
     @id = SqlRunner.run(sql_command, values)[0]["id"]
   end
 
   def update(columns, values)
     columns_string = build_column_string(columns)
+    argument_string = build_argument_string(values.length)
     sql_command = "UPDATE #{@table_name} SET
-      (#{columns_string}) = ($1, $2)
+      (#{columns_string}) = (#{argument_string})
       WHERE id = #{@id}"
     SqlRunner.run(sql_command, values)
   end
@@ -55,6 +57,14 @@ class Crud
     result = ""
     columns.each() do |column|
       result += "#{column}, "
+    end
+    return result[0..-3]
+  end
+
+  def build_argument_string(argument_count)
+    result = ""
+    (1..argument_count).each() do |num|
+      result += "$#{num}, "
     end
     return result[0..-3]
   end
