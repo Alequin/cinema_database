@@ -2,7 +2,7 @@ require_relative("crud.rb")
 
 class Film < Crud
 
-  attr_reader :id, :title
+  attr_reader :title
   attr_accessor :cost
 
   def initialize(options)
