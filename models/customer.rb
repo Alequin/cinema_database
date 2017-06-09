@@ -1,12 +1,13 @@
 require_relative("../db/sql_runner.rb")
+require_relative("crud.rb")
 
-class Customer
+class Customer < Crud
 
-  attr_reader :id, :money
+  attr_reader :money
   attr_accessor :name
 
   def initialize(options)
-    @id = options["id"].to_i if options["id"]
+    super(options)
     @name = options["name"]
     @money = options["money"]
   end
