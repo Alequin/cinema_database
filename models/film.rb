@@ -9,7 +9,7 @@ class Film < Crud
     @@table_name = "films"
     super(options["id"], @@table_name)
     @title = options["title"]
-    @cost = options["cost"]
+    @cost = options["cost"].to_i
   end
 
   def Film.get_all()
@@ -25,7 +25,9 @@ class Film < Crud
   end
 
   def save()
-
+    columns = ["title", "cost"]
+    values = [@title, @cost]
+    super(columns, values)
   end
 
   def update()
