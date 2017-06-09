@@ -10,5 +10,8 @@ customer_1 = Customer.new({
 
 customer_1.save()
 
-# binding.pry
-# nil
+customer_1.name = "Jane Doe"
+customer_1.update()
+
+binding.pry
+nil

@@ -22,9 +22,8 @@ class Customer
 
   def save()
     sql_command = "INSERT INTO customers
-      (name, money) VALUES ($1, $2)"
-    values = [@name, @money]
-    SqlRunner.run(sql_command, values)
+      (name, money) VALUES ($1, $2) RETURNING id"
+    @id = run_sql_with_standard_values(sql_command)[0]["id"]
   end
 
   def find(id)
@@ -32,13 +31,21 @@ class Customer
   end
 
   def update()
-
+    sql_command = "UPDATE customers SET
+      (name, money) = ($1, $2)
+      WHERE id = #{@id}"
+    run_sql_with_standard_values(sql_command)
   end
 
   def delete()
 
   end
 
+  private
 
+  def run_sql_with_standard_values(sql_command)
+    values = [@name, @money]
+    return SqlRunner.run(sql_command, values)
+  end
 
 end
