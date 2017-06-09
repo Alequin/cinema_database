@@ -38,7 +38,7 @@ class Crud
 
   def update(columns, values)
     columns_string = build_column_string(columns)
-    sql_command = "UPDATE customers SET
+    sql_command = "UPDATE #{@table_name} SET
       (#{columns_string}) = ($1, $2)
       WHERE id = #{@id}"
     SqlRunner.run(sql_command, values)
