@@ -15,15 +15,17 @@ class Screening < Crud
   end
 
   def Screening.get_all()
-
+    screenings = Crud.get_all(@@table_name)
+    return screenings.map() {|screening| Screening.new(screening)}
   end
 
   def Screening.delete_all()
-
+    Crud.delete_all(@@table_name)
   end
 
   def Screening.find(id)
-
+    screening = Crud.find(id, @@table_name)
+    return Screening.new(screening)
   end
 
   def save()
