@@ -19,7 +19,7 @@ class Film < Crud
 
   def Film.get_all()
     films = Crud.get_all(@@table_name)
-    return films.map(){|film| Film.new(film)}
+    return Film.map_sql_result(films)
   end
 
   def Film.delete_all()

@@ -18,7 +18,7 @@ class Ticket < Crud
 
   def Ticket.get_all()
     tickets = Crud.get_all(@@table_name)
-    return tickets.map() {|ticket| Ticket.new(ticket)}
+    return Ticket.map_sql_result(tickets)
   end
 
   def Ticket.delete_all()

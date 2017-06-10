@@ -19,7 +19,7 @@ class Screening < Crud
 
   def Screening.get_all()
     screenings = Crud.get_all(@@table_name)
-    return screenings.map() {|screening| Screening.new(screening)}
+    return Screening.map_sql_result(screenings)
   end
 
   def Screening.delete_all()

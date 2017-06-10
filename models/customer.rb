@@ -19,7 +19,7 @@ class Customer < Crud
 
   def Customer.get_all()
     customers = Crud.get_all(@@table_name)
-    return customers.map() {|customer| Customer.new(customer)}
+    return Customer.map_sql_result(customers)
   end
 
   def Customer.delete_all()
