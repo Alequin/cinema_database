@@ -44,7 +44,7 @@ class Customer < Crud
     sql_command = "SELECT tickets.* FROM tickets
       WHERE customer_id = #{@id}"
     tickets = SqlRunner.run(sql_command)
-    return tickets.map() {|ticket| Ticket.new(ticket)}
+    return Ticket.map_sql_result(tickets)
   end
 
   def get_number_of_tickets()

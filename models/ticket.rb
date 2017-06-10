@@ -26,6 +26,10 @@ class Ticket < Crud
     return Ticket.new(ticket)
   end
 
+  def Ticket.map_sql_result(result)
+    return result.map(){|item| Ticket.new(item)}
+  end
+
   def save()
     columns = ["customer_id", "screening_id"]
     values = [@customer_id, @screening_id]

@@ -14,7 +14,7 @@ class Screening < Crud
   end
 
   def Screening.map_sql_result(result)
-    return result.map(){|screening| Screening.new(screening)}
+    return result.map(){|item| Screening.new(item)}
   end
 
   def Screening.get_all()
