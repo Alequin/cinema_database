@@ -201,5 +201,5 @@ tickets[12] = Ticket.new({
 
 call_save_on_all(tickets)
 
-# binding.pry
-# nil
+binding.pry
+nil

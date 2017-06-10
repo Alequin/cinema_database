@@ -1,4 +1,5 @@
 require_relative("crud.rb")
+require_relative("ticket.rb")
 
 class Customer < Crud
 
@@ -37,6 +38,13 @@ class Customer < Crud
     columns = ["name", "money"]
     values = [@name, @money]
     super(columns, values)
+  end
+
+  def get_tickets()
+    sql_command = "SELECT tickets.* FROM tickets
+      WHERE customer_id = #{@id}"
+    tickets = SqlRunner.run(sql_command)
+    return tickets.map() {|ticket| Ticket.new(ticket)}
   end
 
   def increase_money_by(amount)
