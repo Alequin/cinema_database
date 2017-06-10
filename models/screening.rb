@@ -47,6 +47,13 @@ class Screening < Crud
     @show_time = time_str if(time_str.scan(/^\d\d:\d\d$/).length == 1)
   end
 
+  def get_film()
+    sql_command = "SELECT films.* FROM films
+      WHERE films.id = #{@film_id}"
+    film = SqlRunner.run(sql_command)[0]
+    return Film.new(film)
+  end
+
   def get_tickets()
     sql_command = "SELECT tickets.* FROM tickets
       WHERE tickets.screening_id = #{id}"
