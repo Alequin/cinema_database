@@ -10,6 +10,15 @@ Film.delete_all()
 Customer.delete_all()
 
 customers = []
+films = []
+screenings = []
+tickets = []
+
+def call_save_on_all(array)
+  array.each() do |item|
+    item.save()
+  end
+end
 
 customers[0] = Customer.new({
     "name" => "Tommy Atkins",
@@ -51,146 +60,146 @@ customers[7] = Customer.new({
     "money" => 170
 })
 
-customers.each() do |customer|
-  customer.save()
-end
+call_save_on_all(customers)
 
-film_1 = Film.new({
+films[0] = Film.new({
   "title" => "Wonder Woman",
   "cost" => 10
 })
 
-film_2 = Film.new({
+films[1] = Film.new({
   "title" => "LOTR: The Fellowship of the Ring",
   "cost" => 4
 })
 
-film_3 = Film.new({
+films[2] = Film.new({
   "title" => "Your Name",
   "cost" => 5
 })
 
-film_4 = Film.new({
+films[3] = Film.new({
   "title" => "Boy and the Beast",
   "cost" => 7
 })
 
-screening_1 = Screening.new({
+call_save_on_all(films)
+
+screenings[0] = Screening.new({
   "show_time" => "09:00",
   "total_tickets" => 3,
-  "film_id" => film_1.id
+  "film_id" => films[0].id
 })
 
-screening_2 = Screening.new({
+screenings[1] = Screening.new({
   "show_time" => "10:30",
   "total_tickets" => 3,
-  "film_id" => film_2.id
+  "film_id" => films[1].id
 })
 
-screening_3 = Screening.new({
+screenings[2] = Screening.new({
   "show_time" => "12:00",
   "total_tickets" => 3,
-  "film_id" => film_3.id
+  "film_id" => films[2].id
 })
 
-screening_4 = Screening.new({
+screenings[3] = Screening.new({
   "show_time" => "14:30",
   "total_tickets" => 3,
-  "film_id" => film_4.id
+  "film_id" => films[3].id
 })
 
-screening_5 = Screening.new({
+screenings[4] = Screening.new({
   "show_time" => "16:00",
   "total_tickets" => 3,
-  "film_id" => film_1.id
+  "film_id" => films[0].id
 })
 
-screening_6 = Screening.new({
+screenings[5] = Screening.new({
   "show_time" => "17:30",
   "total_tickets" => 3,
-  "film_id" => film_2.id
+  "film_id" => films[1].id
 })
 
-screening_7 = Screening.new({
+screenings[6] = Screening.new({
   "show_time" => "19:00",
   "total_tickets" => 3,
-  "film_id" => film_3.id
+  "film_id" => films[2].id
 })
 
-screening_8 = Screening.new({
+screenings[7] = Screening.new({
   "show_time" => "20:30",
   "total_tickets" => 3,
-  "film_id" => film_4.id
+  "film_id" => films[3].id
 })
 
-ticket_1 = Ticket.new({
+call_save_on_all(screenings)
+
+tickets[0] = Ticket.new({
   "customer_id" => customers[0].id,
-  "screening_id" => screening_1.id
+  "screening_id" => screenings[0].id
 })
 
-ticket_2 = Ticket.new({
+tickets[1] = Ticket.new({
   "customer_id" => customers[0].id,
-  "screening_id" => screening_3.id
+  "screening_id" => screenings[2].id
 })
 
-ticket_3 = Ticket.new({
+tickets[2] = Ticket.new({
   "customer_id" => customers[0].id,
-  "screening_id" => screening_6.id
+  "screening_id" => screenings[5].id
 })
 
-ticket_4 = Ticket.new({
+tickets[3] = Ticket.new({
   "customer_id" => customers[1].id,
-  "screening_id" => screening_8.id
+  "screening_id" => screenings[7].id
 })
 
-ticket_5 = Ticket.new({
+tickets[4] = Ticket.new({
   "customer_id" => customers[2].id,
-  "screening_id" => screening_2.id
+  "screening_id" => screenings[1].id
 })
 
-ticket_6 = Ticket.new({
+tickets[5] = Ticket.new({
   "customer_id" => customers[2].id,
-  "screening_id" => screening_7.id
+  "screening_id" => screenings[6].id
 })
 
-ticket_6 = Ticket.new({
+tickets[6] = Ticket.new({
   "customer_id" => customers[3].id,
-  "screening_id" => screening_6.id
+  "screening_id" => screenings[5].id
 })
 
-ticket_6 = Ticket.new({
+tickets[7] = Ticket.new({
   "customer_id" => customers[4].id,
-  "screening_id" => screening_3.id
+  "screening_id" => screenings[2].id
 })
 
-ticket_7 = Ticket.new({
+tickets[8] = Ticket.new({
   "customer_id" => customers[4].id,
-  "screening_id" => screening_2.id
+  "screening_id" => screenings[1].id
 })
 
-ticket_8 = Ticket.new({
+tickets[9] = Ticket.new({
   "customer_id" => customers[5].id,
-  "screening_id" => screening_5.id
+  "screening_id" => screenings[4].id
 })
 
-ticket_9 = Ticket.new({
+tickets[10] = Ticket.new({
   "customer_id" => customers[5].id,
-  "screening_id" => screening_1.id
+  "screening_id" => screenings[0].id
 })
 
-ticket_10 = Ticket.new({
+tickets[11] = Ticket.new({
   "customer_id" => customers[6].id,
-  "screening_id" => screening_1.id
+  "screening_id" => screenings[0].id
 })
 
-ticket_11 = Ticket.new({
+tickets[12] = Ticket.new({
   "customer_id" => customers[7].id,
-  "screening_id" => screening_8.id
+  "screening_id" => screenings[7].id
 })
 
-puts ticket_1.customer_id
-ticket_1.change_customer(customers[7])
-puts ticket_1.customer_id
+call_save_on_all(tickets)
 
 # binding.pry
 # nil
