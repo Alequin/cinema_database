@@ -47,6 +47,10 @@ class Customer < Crud
     return tickets.map() {|ticket| Ticket.new(ticket)}
   end
 
+  def get_number_of_tickets()
+    return (get_tickets).length
+  end
+
   def get_screenings()
     sql_command = "SELECT screenings.* FROM customers
       INNER JOIN tickets
