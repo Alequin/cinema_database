@@ -12,6 +12,10 @@ class Ticket < Crud
     @screening_id = options["screening_id"].to_i
   end
 
+  def Ticket.map_sql_result(result)
+    return result.map(){|item| Ticket.new(item)}
+  end
+
   def Ticket.get_all()
     tickets = Crud.get_all(@@table_name)
     return tickets.map() {|ticket| Ticket.new(ticket)}
@@ -24,10 +28,6 @@ class Ticket < Crud
   def Ticket.find(id)
     ticket = Crud.find(id, @@table_name)
     return Ticket.new(ticket)
-  end
-
-  def Ticket.map_sql_result(result)
-    return result.map(){|item| Ticket.new(item)}
   end
 
   def save()

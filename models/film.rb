@@ -13,6 +13,10 @@ class Film < Crud
     @cost = options["cost"].to_i
   end
 
+  def Film.map_sql_result(result)
+    return result.map(){|item| Film.new(item)}
+  end
+
   def Film.get_all()
     films = Crud.get_all(@@table_name)
     return films.map(){|film| Film.new(film)}

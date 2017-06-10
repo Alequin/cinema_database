@@ -14,6 +14,10 @@ class Customer < Crud
     @money = options["money"].to_i
   end
 
+  def Customer.map_sql_result(result)
+    return result.map(){|item| Customer.new(item)}
+  end
+
   def Customer.get_all()
     customers = Crud.get_all(@@table_name)
     return customers.map() {|customer| Customer.new(customer)}
