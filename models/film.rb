@@ -32,15 +32,19 @@ class Film < Crud
   end
 
   def save()
-    columns = ["title", "cost"]
-    values = [@title, @cost]
-    super(columns, values)
+    to_save = {
+      "title" => @title,
+      "cost" => @cost
+    }
+    super(to_save)
   end
 
   def update()
-    columns = ["title", "cost"]
-    values = [@title, @cost]
-    super(columns, values)
+    to_update = {
+      "title" => @title,
+      "cost" => @cost
+    }
+    super(to_update)
   end
 
   def get_screenings()

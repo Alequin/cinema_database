@@ -34,21 +34,21 @@ class Crud
     @table_name = table_name
   end
 
-  def save(columns, values)
-    columns_string = build_column_string(columns)
-    argument_string = build_argument_string(values.length)
+  def save(to_insert)
+    columns_string = build_column_string(to_insert.keys)
+    argument_string = build_argument_string((to_insert.values).length)
     sql_command = "INSERT INTO #{@table_name}
       (#{columns_string}) VALUES (#{argument_string}) RETURNING id"
-    @id = SqlRunner.run(sql_command, values)[0]["id"]
+    @id = SqlRunner.run(sql_command, to_insert.values)[0]["id"]
   end
 
-  def update(columns, values)
-    columns_string = build_column_string(columns)
-    argument_string = build_argument_string(values.length)
+  def update(to_insert)
+    columns_string = build_column_string(to_insert.keys)
+    argument_string = build_argument_string((to_insert.values).length)
     sql_command = "UPDATE #{@table_name} SET
       (#{columns_string}) = (#{argument_string})
       WHERE id = #{@id}"
-    SqlRunner.run(sql_command, values)
+    SqlRunner.run(sql_command, to_insert.values)
   end
 
   private

@@ -49,15 +49,21 @@ class Screening < Crud
   private_class_method :group_tickets_by_screening_sql_result
 
   def save()
-    columns = ["film_id", "show_time", "total_tickets"]
-    values = [@film_id, @show_time, @total_tickets]
-    super(columns, values)
+    to_save = {
+      "film_id" => @film_id,
+      "show_time" => @show_time,
+      "total_tickets" => @total_tickets
+    }
+    super(to_save)
   end
 
   def update()
-    columns = ["film_id", "show_time", "total_tickets"]
-    values = [@film_id, @show_time, @total_tickets]
-    super(columns, values)
+    to_update = {
+      "film_id" => @film_id,
+      "show_time" => @show_time,
+      "total_tickets" => @total_tickets
+    }
+    super(to_update)
   end
 
   def set_show_time(time_str)

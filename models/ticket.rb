@@ -31,15 +31,19 @@ class Ticket < Crud
   end
 
   def save()
-    columns = ["customer_id", "screening_id"]
-    values = [@customer_id, @screening_id]
-    super(columns, values)
+    to_save = {
+      "customer_id" => @customer_id,
+      "screening_id" => @screening_id
+    }
+    super(to_save)
   end
 
   def update()
-    columns = ["customer_id", "screening_id"]
-    values = [@customer_id, @screening_id]
-    super(columns, values)
+    to_update = {
+      "customer_id" => @customer_id,
+      "screening_id" => @screening_id
+    }
+    super(to_update)
   end
 
   def change_customer(customer)

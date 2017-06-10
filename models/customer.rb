@@ -32,15 +32,19 @@ class Customer < Crud
   end
 
   def save()
-    columns = ["name", "money"]
-    values = [@name, @money]
-    super(columns, values)
+    to_save = {
+      "name" => @name,
+      "money" => @money
+    }
+    super(to_save)
   end
 
   def update()
-    columns = ["name", "money"]
-    values = [@name, @money]
-    super(columns, values)
+    to_update = {
+      "name" => @name,
+      "money" => @money
+    }
+    super(to_update)
   end
 
   def get_tickets()
