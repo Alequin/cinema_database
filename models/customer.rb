@@ -54,7 +54,7 @@ class Customer < Crud
   def get_number_of_tickets()
     sql_command = "SELECT COUNT(tickets.*) FROM tickets
       WHERE customer_id = #{@id}"
-    tickets_count = SqlRunner.run(sql_command)[0]["count"]
+    tickets_count = SqlRunner.run(sql_command)[0]["count"].to_i
     return tickets_count
   end
 
