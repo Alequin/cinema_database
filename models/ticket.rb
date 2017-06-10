@@ -2,8 +2,7 @@ require_relative("crud.rb")
 
 class Ticket < Crud
 
-  attr_reader :screening_id
-  attr_accessor :customer_id
+  attr_reader :screening_id, :customer_id
 
   @@table_name = "tickets"
 
@@ -37,6 +36,10 @@ class Ticket < Crud
     columns = ["customer_id", "screening_id"]
     values = [@customer_id, @screening_id]
     super(columns, values)
+  end
+
+  def change_customer(customer)
+    @customer_id = customer.id
   end
 
 end

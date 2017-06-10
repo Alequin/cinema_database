@@ -9,45 +9,51 @@ Screening.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
-customer_1 = Customer.new({
+customers = []
+
+customers[0] = Customer.new({
     "name" => "Tommy Atkins",
     "money" => 100
 })
 
-customer_2 = Customer.new({
+customers[1] = Customer.new({
     "name" => "Da kine",
     "money" => 110
 })
 
-customer_3 = Customer.new({
+customers[2] = Customer.new({
     "name" => "Jane Doe",
     "money" => 120
 })
 
-customer_4 = Customer.new({
+customers[3] = Customer.new({
     "name" => "Benjaman Kyle",
     "money" => 130
 })
 
-customer_5 = Customer.new({
+customers[4] = Customer.new({
     "name" => "Rudolf Lingens",
     "money" => 140
 })
 
-customer_6 = Customer.new({
+customers[5] = Customer.new({
     "name" => "Joe Diner",
     "money" => 150
 })
 
-customer_7 = Customer.new({
+customers[6] = Customer.new({
     "name" => "Hong Gildong",
     "money" => 160
 })
 
-customer_8 = Customer.new({
+customers[7] = Customer.new({
     "name" => "Joe Shmoe",
     "money" => 170
 })
+
+customers.each() do |customer|
+  customer.save()
+end
 
 film_1 = Film.new({
   "title" => "Wonder Woman",
@@ -75,13 +81,116 @@ screening_1 = Screening.new({
   "film_id" => film_1.id
 })
 
-screening_1.set_show_time("15:00")
-puts screening_1.show_time
-screening_1.set_show_time("1059")
-puts screening_1.show_time
-puts screening_1.show_time
-screening_1.set_show_time("bacon")
-puts screening_1.show_time
+screening_2 = Screening.new({
+  "show_time" => "10:30",
+  "total_tickets" => 3,
+  "film_id" => film_2.id
+})
+
+screening_3 = Screening.new({
+  "show_time" => "12:00",
+  "total_tickets" => 3,
+  "film_id" => film_3.id
+})
+
+screening_4 = Screening.new({
+  "show_time" => "14:30",
+  "total_tickets" => 3,
+  "film_id" => film_4.id
+})
+
+screening_5 = Screening.new({
+  "show_time" => "16:00",
+  "total_tickets" => 3,
+  "film_id" => film_1.id
+})
+
+screening_6 = Screening.new({
+  "show_time" => "17:30",
+  "total_tickets" => 3,
+  "film_id" => film_2.id
+})
+
+screening_7 = Screening.new({
+  "show_time" => "19:00",
+  "total_tickets" => 3,
+  "film_id" => film_3.id
+})
+
+screening_8 = Screening.new({
+  "show_time" => "20:30",
+  "total_tickets" => 3,
+  "film_id" => film_4.id
+})
+
+ticket_1 = Ticket.new({
+  "customer_id" => customers[0].id,
+  "screening_id" => screening_1.id
+})
+
+ticket_2 = Ticket.new({
+  "customer_id" => customers[0].id,
+  "screening_id" => screening_3.id
+})
+
+ticket_3 = Ticket.new({
+  "customer_id" => customers[0].id,
+  "screening_id" => screening_6.id
+})
+
+ticket_4 = Ticket.new({
+  "customer_id" => customers[1].id,
+  "screening_id" => screening_8.id
+})
+
+ticket_5 = Ticket.new({
+  "customer_id" => customers[2].id,
+  "screening_id" => screening_2.id
+})
+
+ticket_6 = Ticket.new({
+  "customer_id" => customers[2].id,
+  "screening_id" => screening_7.id
+})
+
+ticket_6 = Ticket.new({
+  "customer_id" => customers[3].id,
+  "screening_id" => screening_6.id
+})
+
+ticket_6 = Ticket.new({
+  "customer_id" => customers[4].id,
+  "screening_id" => screening_3.id
+})
+
+ticket_7 = Ticket.new({
+  "customer_id" => customers[4].id,
+  "screening_id" => screening_2.id
+})
+
+ticket_8 = Ticket.new({
+  "customer_id" => customers[5].id,
+  "screening_id" => screening_5.id
+})
+
+ticket_9 = Ticket.new({
+  "customer_id" => customers[5].id,
+  "screening_id" => screening_1.id
+})
+
+ticket_10 = Ticket.new({
+  "customer_id" => customers[6].id,
+  "screening_id" => screening_1.id
+})
+
+ticket_11 = Ticket.new({
+  "customer_id" => customers[7].id,
+  "screening_id" => screening_8.id
+})
+
+puts ticket_1.customer_id
+ticket_1.change_customer(customers[7])
+puts ticket_1.customer_id
 
 # binding.pry
 # nil
