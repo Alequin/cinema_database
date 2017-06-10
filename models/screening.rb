@@ -50,8 +50,19 @@ class Screening < Crud
   def get_tickets()
     sql_command = "SELECT tickets.* FROM tickets
       WHERE tickets.screening_id = #{id}"
-    ticketss = SqlRunner.run(sql_command)
-    return Ticket.map_sql_result(ticketss)
+    tickets = SqlRunner.run(sql_command)
+    return Ticket.map_sql_result(tickets)
+  end
+
+  def tickets_sold()
+    sql_command = "SELECT COUNT(tickets.*) FROM tickets
+      WHERE tickets.screening_id = #{id}"
+    ticket_count = SqlRunner.run(sql_command)[0]["count"].to_i
+    return ticket_count
+  end
+
+  def tickets_available?()
+    return tickets_sold < @total_tickets
   end
 
   def get_customers()
