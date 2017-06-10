@@ -13,6 +13,10 @@ class Screening < Crud
     @film_id = options["film_id"].to_i
   end
 
+  def Screening.map_sql_result(result)
+    return result.map(){|screening| Screening.new(screening)}
+  end
+
   def Screening.get_all()
     screenings = Crud.get_all(@@table_name)
     return screenings.map() {|screening| Screening.new(screening)}

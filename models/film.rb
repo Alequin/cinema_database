@@ -39,4 +39,11 @@ class Film < Crud
     super(columns, values)
   end
 
+  def get_screenings()
+    sql_command = "SELECT screenings.* FROM screenings
+      WHERE film_id = #{@id}"
+    screenings = SqlRunner.run(sql_command)
+    return Screening.map_sql_result(screenings)
+  end
+
 end

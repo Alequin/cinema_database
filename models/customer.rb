@@ -62,7 +62,7 @@ class Customer < Crud
       ON tickets.screening_id = screenings.id
       WHERE customers.id = #{@id}"
     screenings = SqlRunner.run(sql_command)
-    return screenings.map() {|screening| Screening.new(screening)}
+    return Screening.map_sql_result(screenings)
   end
 
   def increase_money_by(amount)

@@ -14,4 +14,9 @@ module SqlRunner
     return result
   end
 
+  # def SqlRunner.run_and_convert(sql_command, values = [], &block)
+  #   results = SqlRunner.run(sql_command, values)
+  #   return results.map(&block)
+  # end
+
 end
