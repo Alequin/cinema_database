@@ -31,6 +31,23 @@ class Screening < Crud
     return Screening.new(screening)
   end
 
+  def Screening.most_popular_screening()
+    screening_id = Screening.group_tickets_by_screening_sql_result("DESC")[0]["screening_id"]
+    return Screening.find(screening_id)
+  end
+
+  def Screening.least_popular_screening()
+    screening_id = Screening.group_tickets_by_screening_sql_result("ASC")[0]["screening_id"]
+    return Screening.find(screening_id)
+  end
+
+  def Screening.group_tickets_by_screening_sql_result(order)
+    sql_command = "SELECT screening_id, COUNT(screening_id)
+      FROM tickets GROUP BY screening_id ORDER BY count #{order}"
+    return SqlRunner.run(sql_command)
+  end
+  private_class_method :group_tickets_by_screening_sql_result
+
   def save()
     columns = ["film_id", "show_time", "total_tickets"]
     values = [@film_id, @show_time, @total_tickets]
