@@ -47,4 +47,22 @@ class Screening < Crud
     @show_time = time_str if(time_str.scan(/^\d\d:\d\d$/).length == 1)
   end
 
+  def get_tickets()
+    sql_command = "SELECT tickets.* FROM tickets
+      WHERE tickets.screening_id = #{id}"
+    ticketss = SqlRunner.run(sql_command)
+    return Ticket.map_sql_result(ticketss)
+  end
+
+  def get_customers()
+    sql_command = "SELECT customers.* FROM screenings
+      INNER JOIN tickets
+      ON screenings.id = tickets.screening_id
+      INNER JOIN customers
+      ON tickets.customer_id = customers.id
+      WHERE screenings.id = #{@id}"
+    customers = SqlRunner.run(sql_command)
+    return Customer.map_sql_result(customers)
+  end
+
 end
