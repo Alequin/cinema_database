@@ -44,17 +44,12 @@ class Customer < Crud
   end
 
   def get_tickets()
-    sql_command = "SELECT tickets.* FROM tickets
-      WHERE customer_id = #{@id}"
-    tickets = SqlRunner.run(sql_command)
+    tickets = get_tickets_sql_result
     return Ticket.map_sql_result(tickets)
   end
 
   def get_number_of_tickets()
-    sql_command = "SELECT COUNT(tickets.*) FROM tickets
-      WHERE customer_id = #{@id}"
-    tickets_count = SqlRunner.run(sql_command)[0]["count"].to_i
-    return tickets_count
+    return get_tickets_sql_result().ntuples
   end
 
   def get_screenings()
@@ -78,6 +73,14 @@ class Customer < Crud
 
   def enough_money?(cost_of_item)
     return @money >= cost_of_item
+  end
+
+  private
+
+  def get_tickets_sql_result()
+    sql_command = "SELECT tickets.* FROM tickets
+      WHERE customer_id = #{@id}"
+    return SqlRunner.run(sql_command)
   end
 
 end
