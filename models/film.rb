@@ -62,18 +62,26 @@ class Film < Crud
     return Ticket.map_sql_result(tickets)
   end
 
-  # Is this really needed as a similar method will be available is class
-  # Screening and customers will be retrevable from ticket objects.
-  # def get_customers()
-  #   sql_command = "SELECT customers.* FROM films
-  #     INNER JOIN screenings
-  #     ON films.id = screenings.film_id
-  #     INNER JOIN tickets
-  #     ON screenings.id = tickets.screening_id
-  #     INNER JOIN customers
-  #     ON tickets.customer_id = customers.id
-  #     WHERE films.id = #{@id}"
-  #   customers = SqlRunner.run(sql_command)
-  #   return Customer.map_sql_result(customers)
-  # end
+  def get_booked_customers()
+    customers = get_booked_customers_sql_result()
+    return Customer.map_sql_result(customers)
+  end
+
+  def get_booked_customers_count()
+    return get_booked_customers_sql_result().ntuples
+  end
+
+  private
+
+  def get_booked_customers_sql_result()
+    sql_command = "SELECT customers.* FROM films
+      INNER JOIN screenings
+      ON films.id = screenings.film_id
+      INNER JOIN tickets
+      ON screenings.id = tickets.screening_id
+      INNER JOIN customers
+      ON tickets.customer_id = customers.id
+      WHERE films.id = #{@id}"
+    return SqlRunner.run(sql_command)
+  end
 end
