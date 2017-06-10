@@ -1,2 +1,0 @@
-when the customer_id of a ticket changes a customer object should be given
-rather than attr_writer and giving the specific id
