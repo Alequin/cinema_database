@@ -10,63 +10,78 @@ Film.delete_all()
 Customer.delete_all()
 
 customer_1 = Customer.new({
-  "name" => "Tommy Atkins",
-  "money" => 100
+    "name" => "Tommy Atkins",
+    "money" => 100
 })
+
 customer_2 = Customer.new({
-  "name" => "Da kine",
-  "money" => 110
+    "name" => "Da kine",
+    "money" => 110
 })
+
 customer_3 = Customer.new({
-  "name" => "Benjaman Kyle",
-  "money" => 130
+    "name" => "Jane Doe",
+    "money" => 120
 })
 
-customer_1.save()
-customer_2.save()
-customer_3.save()
+customer_4 = Customer.new({
+    "name" => "Benjaman Kyle",
+    "money" => 130
+})
 
-customer_1.name = "Jane Doe"
-customer_1.increase_money_by(1000)
-customer_1.decrease_money_by(600)
-customer_1.update()
+customer_5 = Customer.new({
+    "name" => "Rudolf Lingens",
+    "money" => 140
+})
 
-customer_4 = Customer.find(customer_1.id)
+customer_6 = Customer.new({
+    "name" => "Joe Diner",
+    "money" => 150
+})
 
-all_customers = Customer.get_all()
+customer_7 = Customer.new({
+    "name" => "Hong Gildong",
+    "money" => 160
+})
 
-# customer_1.delete()
-# customer_2.delete()
-# customer_3.delete()
+customer_8 = Customer.new({
+    "name" => "Joe Shmoe",
+    "money" => 170
+})
 
 film_1 = Film.new({
+  "title" => "Wonder Woman",
+  "cost" => 10
+})
+
+film_2 = Film.new({
+  "title" => "LOTR: The Fellowship of the Ring",
+  "cost" => 4
+})
+
+film_3 = Film.new({
   "title" => "Your Name",
   "cost" => 5
 })
-film_1.save()
+
+film_4 = Film.new({
+  "title" => "Boy and the Beast",
+  "cost" => 7
+})
 
 screening_1 = Screening.new({
-    "film_id" => film_1.id,
-    "show_time" => "12:00",
-    "total_tickets" => 10
+  "show_time" => "09:00",
+  "total_tickets" => 3,
+  "film_id" => film_1.id
 })
-screening_1.save()
-screening_1.show_time = "14:00"
-screening_1.update()
 
-ticket_1 = Ticket.new({
-    "customer_id" => customer_1.id,
-    "screening_id" => screening_1.id
-})
-ticket_2 = Ticket.new({
-    "customer_id" => customer_2.id,
-    "screening_id" => screening_1.id
-})
-ticket_1.save()
-ticket_2.save()
+screening_1.set_show_time("15:00")
+puts screening_1.show_time
+screening_1.set_show_time("1059")
+puts screening_1.show_time
+puts screening_1.show_time
+screening_1.set_show_time("bacon")
+puts screening_1.show_time
 
-ticket_1.customer_id = customer_2.id
-ticket_1.update()
-
-binding.pry
-nil
+# binding.pry
+# nil
