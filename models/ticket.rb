@@ -46,4 +46,11 @@ class Ticket < Crud
     @customer_id = customer.id
   end
 
+  def get_customer()
+    sql_command = "SELECT customers.* FROM customers
+      WHERE customers.id = #{@customer_id}"
+    customer = SqlRunner.run(sql_command)[0]
+    return Customer.new(customer)
+  end
+
 end
