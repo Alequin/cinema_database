@@ -55,7 +55,7 @@ class Film < Crud
     return Ticket.map_sql_result(tickets)
   end
 
-  def get_tickets_sold_count()
+  def tickets_sold_count()
     return get_tickets_sql_result().ntuples
   end
 
