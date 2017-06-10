@@ -53,4 +53,22 @@ class Ticket < Crud
     return Customer.new(customer)
   end
 
+  def get_screening()
+    sql_command = "SELECT screenings.* FROM screenings
+      WHERE screenings.id = #{@screening_id}"
+    screening = SqlRunner.run(sql_command)[0]
+    return Screening.new(screening)
+  end
+
+  def get_film()
+    sql_command = "SELECT films.* FROM tickets
+      INNER JOIN screenings
+      ON tickets.screening_id = screenings.id
+      INNER JOIN films
+      ON screenings.film_id = films.id
+      WHERE tickets.id = #{@id}"
+    film = SqlRunner.run(sql_command)[0]
+    return Film.new(film)
+  end
+
 end

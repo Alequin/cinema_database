@@ -1,5 +1,4 @@
 require_relative("crud.rb")
-require_relative("ticket.rb")
 
 class Customer < Crud
 
