@@ -51,15 +51,12 @@ class Film < Crud
   end
 
   def get_tickets()
-    sql_command = "SELECT tickets.* FROM films
-      INNER JOIN screenings
-      ON films.id = screenings.film_id
-      INNER JOIN tickets
-      ON screenings.id = tickets.screening_id
-      WHERE films.id = #{@id}
-      ORDER BY tickets.screening_id"
-    tickets = SqlRunner.run(sql_command)
+    tickets = get_tickets_sql_result()
     return Ticket.map_sql_result(tickets)
+  end
+
+  def get_tickets_sold_count()
+    return get_tickets_sql_result().ntuples
   end
 
   def get_booked_customers()
@@ -82,6 +79,17 @@ class Film < Crud
       INNER JOIN customers
       ON tickets.customer_id = customers.id
       WHERE films.id = #{@id}"
+    return SqlRunner.run(sql_command)
+  end
+
+  def get_tickets_sql_result()
+    sql_command = "SELECT tickets.* FROM films
+      INNER JOIN screenings
+      ON films.id = screenings.film_id
+      INNER JOIN tickets
+      ON screenings.id = tickets.screening_id
+      WHERE films.id = #{@id}
+      ORDER BY tickets.screening_id"
     return SqlRunner.run(sql_command)
   end
 end
