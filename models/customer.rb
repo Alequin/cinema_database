@@ -47,6 +47,17 @@ class Customer < Crud
     return tickets.map() {|ticket| Ticket.new(ticket)}
   end
 
+  def get_screenings()
+    sql_command = "SELECT screenings.* FROM customers
+      INNER JOIN tickets
+      ON customers.id = tickets.customer_id
+      INNER JOIN screenings
+      ON tickets.screening_id = screenings.id
+      WHERE customers.id = #{@id}"
+    screenings = SqlRunner.run(sql_command)
+    return screenings.map() {|screening| Screening.new(screening)}
+  end
+
   def increase_money_by(amount)
     @money += amount
   end
