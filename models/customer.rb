@@ -87,4 +87,13 @@ class Customer < Crud
     return SqlRunner.run(sql_command)
   end
 
+  # def get_table_hash()
+  #   table = {
+  #     "id" => @id
+  #     "name" => @name,
+  #     "money" => @money
+  #   }
+  #   return table
+  # end
+
 end

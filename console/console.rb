@@ -201,5 +201,7 @@ tickets[12] = Ticket.new({
 
 call_save_on_all(tickets)
 
+x = Crud.new(0, "tickets")
+
 binding.pry
 nil

@@ -4,6 +4,8 @@ class Crud
 
   attr_reader :id
 
+  private_class_method :new
+
   def Crud.get_all(table_name)
     sql_command = "SELECT * FROM #{table_name}"
     results = SqlRunner.run(sql_command)
@@ -22,12 +24,7 @@ class Crud
     return result
   end
 
-  def delete()
-    sql_command = "DELETE FROM #{@table_name} WHERE id = #{@id}"
-    SqlRunner.run(sql_command)
-  end
-
-  protected
+  private
 
   def initialize(id, table_name)
     @id = id if id
@@ -51,7 +48,10 @@ class Crud
     SqlRunner.run(sql_command, to_insert.values)
   end
 
-  private
+  def delete()
+    sql_command = "DELETE FROM #{@table_name} WHERE id = #{@id}"
+    SqlRunner.run(sql_command)
+  end
 
   def build_column_string(columns)
     result = ""
