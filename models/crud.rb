@@ -4,8 +4,6 @@ class Crud
 
   attr_reader :id
 
-  private_class_method :new
-
   def Crud.get_all(table_name)
     sql_command = "SELECT * FROM #{table_name}"
     results = SqlRunner.run(sql_command)
@@ -24,12 +22,13 @@ class Crud
     return result
   end
 
-  private
 
   def initialize(id, table_name)
     @id = id if id
     @table_name = table_name
   end
+
+  private
 
   def save(to_insert)
     columns_string = build_column_string(to_insert.keys)
